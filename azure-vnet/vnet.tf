@@ -18,15 +18,16 @@ resource "azurerm_virtual_network" "vnetname" {
     resource_group_name = azurerm_resource_group.rgname.name
     address_space = ["10.0.0.0/16"]
   
-}
 
-subnet {
-    name = var.subnet1
-    address_prifix = "10.0.2.0/24"
-    security_group = azurerm_network_security_group.vnetsg.id
-}
 
-tags = {
-    env = var.env
+    subnet {
+      name = var.subnet1
+      address_prifix = "10.0.2.0/24"
+      security_group = azurerm_network_security_group.vnetsg.id
+    }
+
+    tags = {
+      env = var.env
+    }
 }
 
