@@ -10,3 +10,8 @@ resource "azurerm_network_interface" "vmnic" {
     }  
   
 }
+
+resource "azurerm_network_interface_security_group_association" "nsgas" {
+        network_interface_id      = azurerm_network_interface.vmnic.id
+        network_security_group_id = azurerm_network_security_group.vnetsg.id
+}
