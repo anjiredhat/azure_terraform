@@ -9,6 +9,17 @@ resource "azurerm_network_security_group" "vnetsg" {
     name = var.vnetsg
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
+    security_rule {
+        name                       = "Web"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "22"
+        destination_port_range     = "8080"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
   
 }
 
@@ -17,17 +28,12 @@ resource "azurerm_virtual_network" "vnetname" {
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
     address_space = ["10.0.0.0/16"]
-  
+}
 
-
-    subnet {
-      name = var.subnet1
-      address_prefix = "10.0.2.0/24"
-      security_group = azurerm_network_security_group.vnetsg.id
-    }
-
-    tags = {
-      env = var.env
-    }
+resource "azurerm_subnet" "subname" {
+  name                 = var.subnet1
+  resource_group_name  = azurerm_resource_group.rgname.name
+  virtual_network_name = azurerm_virtual_network.vnetname.name
+  address_prefixes     = ["10.0.2.0/24"]
 }
 
