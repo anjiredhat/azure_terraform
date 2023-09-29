@@ -22,3 +22,8 @@ variable "env" {
     default = "PROD"
   
 }
+
+variable "ssh_user" {
+    default = "polagoni"
+  
+}

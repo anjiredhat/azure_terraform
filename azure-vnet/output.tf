@@ -16,3 +16,12 @@ output "vnetname" {
     value = azurerm_virtual_network.vnetname.name
   
 }
+
+output "ssh_user" {
+    value = var.ssh_user
+  
+}
+output "password" {
+    value = random_string.sshpassword.result
+  
+}
