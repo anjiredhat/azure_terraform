@@ -27,3 +27,8 @@ variable "ssh_user" {
     default = "polagoni"
   
 }
+
+variable "vmnic" {
+    default = "terraform-nic"
+  
+}
