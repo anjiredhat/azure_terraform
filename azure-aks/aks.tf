@@ -6,13 +6,13 @@ resource "azurerm_resource_group" "rgname" {
 }
 
 resource "azurerm_kubernetes_cluster" "azureaks" {
-    name = "${random_pet.anji}-azureaks"
+    name = "${random_pet.anji.id}-azureaks"
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
     dns_prefix = var.aksdns
     
     default_node_pool {
-      name = "${random_pet.anji}-akspool"
+      name = "${random_pet.anji.id}-akspool"
       node_count = var.nodecount
       vm_size    = "Standard_D2_v2"
       os_disk_size_gb = 30
