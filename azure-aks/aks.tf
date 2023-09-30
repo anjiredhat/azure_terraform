@@ -1,7 +1,7 @@
 resource "random_pet" "anji" {}
 
 resource "azurerm_resource_group" "rgname" {
-    name = "${random_pet.anji}-aks"
+    name = "${random_pet.anji.id}-aks"
     location = var.location  
 }
 
