@@ -28,3 +28,8 @@ variable "app_password" {
   
 }
 
+variable "poolname" {
+    default = "polagoni"
+  
+}
+
