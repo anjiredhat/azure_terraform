@@ -12,7 +12,7 @@ resource "azurerm_kubernetes_cluster" "azureaks" {
     dns_prefix = var.aksdns
     
     default_node_pool {
-      name = "${random_pet.anji.id}-akspool"
+      name = "polagoni-akspool"
       node_count = var.nodecount
       vm_size    = "Standard_D2_v2"
       os_disk_size_gb = 30
