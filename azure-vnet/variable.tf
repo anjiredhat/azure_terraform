@@ -32,3 +32,8 @@ variable "vmnic" {
     default = "terraform-nic"
   
 }
+
+variable "pubipname" {
+    default = "Polagoni-ip"
+  
+}

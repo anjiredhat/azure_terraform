@@ -25,3 +25,8 @@ output "password" {
     value = random_string.sshpassword.result
   
 }
+
+output "publicip" {
+    value = azurerm_public_ip.polagoni-public.ip_address
+  
+}

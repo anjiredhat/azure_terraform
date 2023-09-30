@@ -7,6 +7,7 @@ resource "azurerm_network_interface" "vmnic" {
       name = "myNicConfiguration"
       subnet_id = azurerm_subnet.subname.id
       private_ip_address_allocation = "Dynamic"
+      public_ip_address_id = azurerm_public_ip.polagoni-public.id
     }  
   
 }
