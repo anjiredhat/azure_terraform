@@ -9,7 +9,7 @@ resource "random_string" "fqdn" {
  length  = 6
  special = false
  upper   = false
- number  = false
+ numeric  = false
 }
 
 resource "azurerm_linux_virtual_machine" "vmss" {
@@ -23,6 +23,11 @@ resource "azurerm_linux_virtual_machine" "vmss" {
       name     = "Standard_DS1_v2"
       tier     = "Standard"
       capacity = "2"
+    }
+
+    os_disk {
+      storage_account_type = "Standard_LRS"
+      caching              = "ReadWrite"
     }
 
     storage_profile_image_reference {

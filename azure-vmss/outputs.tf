@@ -14,7 +14,7 @@ output "rgname" {
 }
 
 output "password" {
-    value = random_string.id.result
+    value = random_string.pass.result
   
 }
 
