@@ -9,7 +9,6 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     name = "${random_pet.anji.id}-vmssname"
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
-    instance = var.vmcount
     upgrade_policy_mode = "Manual"
 
     sku {
@@ -30,15 +29,15 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
       }
 
     source_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal"
-    sku       = "20_04-lts"
-    version   = "latest"
+      publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts"
+      version   = "latest"
     }
 
     os_disk {
-    storage_account_type = "Standard_LRS"
-    caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+      caching              = "ReadWrite"
     }
 
     network_interface {
@@ -53,8 +52,8 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     }
 
    network_profile {
-   name    = "terraformnetworkprofile"
-   primary = true
+      name    = "terraformnetworkprofile"
+      primary = true
    }
 }
 
