@@ -3,7 +3,7 @@ variable "location" {
   
 }
 
-variable "ssh_user" {
+variable "admin_user" {
     default = "polagoni"
   
 }
@@ -37,7 +37,7 @@ variable "tags" {
    description = "Map of the tags to use for the resources that are deployed"
    type        = map(string)
    default = {
-      environment = "codelab"
+      environment = "prod"
    }
 }
 
