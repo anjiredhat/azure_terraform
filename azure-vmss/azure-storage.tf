@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "vmss-storage" {
-    name = "Vmsspolagoni3"
+    name = "vmsspolagoni3"
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
     account_tier = "Standard"
