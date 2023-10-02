@@ -23,3 +23,8 @@ variable "nicname" {
   
 }
 
+variable "ipconf" {
+    default = "vmssconf"
+  
+}
+
