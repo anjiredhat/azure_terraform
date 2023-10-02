@@ -28,33 +28,28 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
       disable_password_authentication = false
       }
 
-    source_image_reference {
-      publisher = "Canonical"
-      offer     = "0001-com-ubuntu-server-focal"
-      sku       = "20_04-lts"
-      version   = "latest"
-    }
-
-    os_disk {
-      storage_account_type = "Standard_LRS"
-      caching              = "ReadWrite"
-    }
-
     network_interface {
       name    = var.nicname
       primary = "true"
+    }
+
+   network_profile {
+      name    = "terraformnetworkprofile"
+      primary = true
 
       ip_configuration {
         name      = var.ipconf
         primary   = "true"
         subnet_id = azurerm_subnet.subname.id
       }
-    }
-
-   network_profile {
-      name    = "terraformnetworkprofile"
-      primary = true
    }
+
+   storage_profile_os_disk {
+   name              = ""
+   caching           = "ReadWrite"
+   create_option     = "FromImage"
+   managed_disk_type = "Standard_LRS"
+ }
 }
 
 resource "random_string" "id" {
