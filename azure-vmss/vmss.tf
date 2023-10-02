@@ -14,7 +14,7 @@ resource "azurerm_linux_virtual_machine" "vmss" {
 
 
     admin_username = var.ssh_user
-    admin_password = random_string.sshpassword.result
+    admin_password = random_string.id.result
     disable_password_authentication = false
 
     source_image_reference {
