@@ -14,7 +14,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
   sku {
     name     = "Standard_F2"
     tier     = "Standard"
-    capacity = 2
+    capacity = 4
   }
 
    os_profile {
