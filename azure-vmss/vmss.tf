@@ -13,9 +13,15 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     sku = var.sku
     
 
-    admin_username = var.ssh_user
-    admin_password = random_string.sshpassword.result
-    disable_password_authentication = false
+    os_profile {
+      computer_name_prefix = "vmss"
+      admin_username       = var.ssh_user
+      admin_password       = random_string_id_result
+    }
+
+    os_profile_linux_config {
+      disable_password_authentication = false
+      }
 
     source_image_reference {
     publisher = "Canonical"
