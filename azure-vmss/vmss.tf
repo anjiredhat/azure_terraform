@@ -28,11 +28,6 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
       disable_password_authentication = false
       }
 
-    network_interface {
-      name    = var.nicname
-      primary = "true"
-    }
-
    network_profile {
       name    = "terraformnetworkprofile"
       primary = true
