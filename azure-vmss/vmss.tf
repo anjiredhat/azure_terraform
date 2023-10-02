@@ -10,7 +10,13 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
     instance = var.vmcount
-    sku = var.sku
+    upgrade_policy_mode = "Manual"
+
+    sku {
+      name     = "Standard_DS1_v2"
+      tier     = "Standard"
+      capacity = 2
+    }
     
 
     os_profile {
@@ -36,15 +42,20 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     }
 
     network_interface {
-    name    = var.nicname
-    primary = "true"
+      name    = var.nicname
+      primary = "true"
 
-    ip_configuration {
-      name      = var.ipconf
-      primary   = "true"
-      subnet_id = azurerm_subnet.internal.id
+      ip_configuration {
+        name      = var.ipconf
+        primary   = "true"
+        subnet_id = azurerm_subnet.subname.id
+      }
     }
-  }
+
+   network_profile {
+   name    = "terraformnetworkprofile"
+   primary = true
+   }
 }
 
 resource "random_string" "id" {
