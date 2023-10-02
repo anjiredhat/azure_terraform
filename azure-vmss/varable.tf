@@ -34,10 +34,6 @@ variable "application_port" {
 }
 
 variable "tags" {
-   description = "Map of the tags to use for the resources that are deployed"
-   type        = map(string)
-   default = {
-      environment = "prod"
-   }
+  default = "prod"
 }
 
