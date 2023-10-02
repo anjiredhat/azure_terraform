@@ -5,52 +5,44 @@ resource "azurerm_resource_group" "rgname" {
 
 resource "random_pet" "anji" {}
 
-resource "azurerm_virtual_machine_scale_set" "vmss" {
+resource "azurerm_linux_virtual_machine" "vmss" {
     name = "${random_pet.anji.id}-vmssname"
     location = var.location
     resource_group_name = azurerm_resource_group.rgname.name
-    upgrade_policy_mode = "Manual"
+    instance = var.vmcount
+    sku = var.sku
 
-    sku {
-      name     = "Standard_DS1_v2"
-      tier     = "Standard"
-      capacity = 2
+
+    admin_username = var.ssh_user
+    admin_password = random_string.sshpassword.result
+    disable_password_authentication = false
+
+    source_image_reference {
+      publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts"
+      version   = "latest"
     }
-    
 
-    os_profile {
-      computer_name_prefix = "vmss"
-      admin_username       = var.ssh_user
-      admin_password       = random_string.id.result
+    os_disk {
+      storage_account_type = "Standard_LRS"
+      caching              = "ReadWrite"
     }
 
-    os_profile_linux_config {
-      disable_password_authentication = false
-      }
+    network_interface {
+      name    = var.nicname
+      primary = "true"
 
-   network_profile {
-      name    = "terraformnetworkprofile"
-      primary = true
-
-      ip_configuration {
-        name      = var.ipconf
-        primary   = "true"
-        subnet_id = azurerm_subnet.subname.id
-      }
-   }
-
-   storage_profile_os_disk {
-   name              = ""
-   caching           = "ReadWrite"
-   create_option     = "FromImage"
-   managed_disk_type = "Standard_LRS"
- }
+    ip_configuration {
+      name      = var.ipconf
+      primary   = "true"
+      subnet_id = azurerm_subnet.internal.id
+    }
+  }
 }
 
 resource "random_string" "id" {
     length = "10"
     special = "true"
-  
+
 }
-
-
