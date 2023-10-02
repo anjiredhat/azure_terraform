@@ -16,7 +16,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
     os_profile {
       computer_name_prefix = "vmss"
       admin_username       = var.ssh_user
-      admin_password       = random_string_id_result
+      admin_password       = random_string.id.result
     }
 
     os_profile_linux_config {
