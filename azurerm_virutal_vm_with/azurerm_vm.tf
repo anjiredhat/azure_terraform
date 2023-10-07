@@ -2,7 +2,7 @@ resource "azurerm_virtual_machine" "mdvm" {
     name = "${random_pet.mdvnet.id}-vm"
     location = var.location
     resource_group_name = azurerm_resource_group.mdrg.name
-    network_interface_ids = azurerm_network_interface.mdnic.id
+    network_interface_ids = [azurerm_network_interface.mdnic.id]
     vm_size = "Standard_F2"
 
     storage_image_reference {
