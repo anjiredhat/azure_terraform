@@ -20,11 +20,11 @@ resource "azurerm_virtual_machine" "mdvm" {
     }
 
     os_profile {
-      computer_name  = azurerm_virtual_machine.mdvm.name
-      admin_username = "polagoni"
-      admin_password = "${random_string.pass.result}"
+      computer_name        = "${random_pet.mdvnet.id}-vm"
+      admin_username       = "polagoni"
+      admin_password       = random_string.pass.result
     }
-
+ 
     os_profile_linux_config {
       disable_password_authentication = false
     }
