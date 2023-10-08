@@ -7,3 +7,8 @@ resource "docker_container" "jenkins" {
     }
   
 }
+
+resource "docker_image" "jenkins" {
+    name = "jenkins/jenkins:lts"
+  
+}
