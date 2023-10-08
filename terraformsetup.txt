@@ -17,4 +17,7 @@ link: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 4) To install docker
    curl -sSL https://get.docker.com/ | sh
 
+5) To install Kubernetes
+    sudo snap install kubectl --classic
+
 
