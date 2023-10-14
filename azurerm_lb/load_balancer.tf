@@ -14,7 +14,7 @@ resource "azurerm_public_ip" "lbpi" {
 }
 
 resource "azurerm_lb" "lbname" {
-    name = "${random_pet.ibname.id}alb"
+    name = "${random_pet.lbname.id}alb"
     resource_group_name = azurerm_resource_group.lbrg.name
     location = var.location
 
